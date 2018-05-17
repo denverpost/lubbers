@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+  <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+  <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+  <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+  <!-- Web Font / @font-face : BEGIN -->
+  <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+  <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+<!--[if mso]>
+<style>
+* {
+font-family: sans-serif !important;
+}
+</style>
+<![endif]-->
+
+<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+<!--[if !mso]><!-->
+<!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+<!--<![endif]-->
+
+<!-- Web Font / @font-face : END -->
+
+<!-- CSS Reset : BEGIN -->
+<style>
+
+/* What it does: Remove spaces around the email design added by some email clients. */
+/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+html,
+body {
+  margin: 0 auto !important;
+  padding: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* What it does: Stops email clients resizing small text. */
+* {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* What it does: Centers email on Android 4.4 */
+div[style*="margin: 16px 0"] {
+  margin: 0 !important;
+}
+
+/* What it does: Stops Outlook from adding extra spacing to tables. */
+table,
+td {
+  mso-table-lspace: 0pt !important;
+  mso-table-rspace: 0pt !important;
+}
+
+/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+table {
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+  table-layout: fixed !important;
+  margin: 0 auto !important;
+}
+table table table {
+  table-layout: auto;
+}
+
+/* What it does: Uses a better rendering method when resizing images in IE. */
+img {
+  -ms-interpolation-mode:bicubic;
+}
+
+/* What it does: A work-around for email clients meddling in triggered links. */
+*[x-apple-data-detectors],  /* iOS */
+.x-gmail-data-detectors,    /* Gmail */
+.x-gmail-data-detectors *,
+.aBn {
+  border-bottom: 0 !important;
+  cursor: default !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+}
+
+/* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+.a6S {
+  display: none !important;
+  opacity: 0.01 !important;
+}
+/* If the above doesn't work, add a .g-img class to any image in question. */
+img.g-img + div {
+  display: none !important;
+}
+
+/* What it does: Prevents underlining the button text in Windows 10 */
+.button-link {
+  text-decoration: none !important;
+}
+
+/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+/* Create one of these media queries for each additional viewport size you'd like to fix */
+
+/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+  .email-container {
+    min-width: 320px !important;
+  }
+}
+/* iPhone 6, 6S, 7, 8, and X */
+@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+  .email-container {
+    min-width: 375px !important;
+  }
+}
+/* iPhone 6+, 7+, and 8+ */
+@media only screen and (min-device-width: 414px) {
+  .email-container {
+    min-width: 414px !important;
+  }
+}
+
+</style>
+<!-- CSS Reset : END -->
+
+<!-- Progressive Enhancements : BEGIN -->
+<style>
+
+/* What it does: Hover styles for buttons */
+.button-td,
+.button-a {
+  transition: all 100ms ease-in;
+}
+.button-td:hover,
+.button-a:hover {
+  background: #555555 !important;
+  border-color: #555555 !important;
+}
+
+/* Media Queries */
+@media screen and (max-width: 480px) {
+
+  /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+  .fluid {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* What it does: Forces table cells into full-width rows. */
+  .stack-column,
+  .stack-column-center {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    direction: ltr !important;
+  }
+  /* And center justify these ones. */
+  .stack-column-center {
+    text-align: center !important;
+  }
+
+  /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+  .center-on-narrow {
+    text-align: center !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+  }
+  table.center-on-narrow {
+    display: inline-block !important;
+  }
+
+  /* What it does: Adjust typography on small screens to improve readability */
+  .email-container p {
+    font-size: 17px !important;
+  }
+}
+
+</style>
+<!-- Progressive Enhancements : END -->
+
+<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+<!--[if gte mso 9]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+
+<!-- CUSTOM STYLES -->
+<style>
+h1 {
+  font-weight:700;
+  line-height: 125%;
+}
+h2 {
+  font-weight:700;
+  line-height: 125%;
+  color:#00639b;
+}
+body {
+  font-family:sans-serif; line-height: 140%; color: #555555;padding-bottom:12px;
+}
+li {
+  padding-bottom:12px;font-size:1em;
+}
+p {
+  line-height: 140%;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+border-bottom:1px dashed;padding:2px 0;text-decoration: none; color:#13618D; font-weight:bold;
+}
+</style>
+<!-- END STYLES -->
+
+</head>
+<body width="100%" bgcolor="#e4e4e4" style="margin: 0; mso-line-height-rule: exactly;">
+  <center style="width: 100%; background: #e4e4e4; text-align: left;">
+
+<!--
+Set the email width. Defined in two places:
+1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+-->
+<div style="max-width: 680px; margin: auto;" class="email-container">
+<!--[if mso]>
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="680" align="center">
+<tr>
+<td>
+<![endif]-->
+<!-- Email Header : BEGIN -->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+  <tr>
+    <td style="padding: 20px 0 0 0; text-align: center" bgcolor="#e4e4e4">
+      <p style="font-size:0.8em;"><a href="[[BrowserLink]]">Click here</a> to view this email in your browser</a>.</p>
+    </td>
+  </tr>
+</table>
+<!-- Email Header : END -->
+<!-- Email Header : BEGIN -->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+  <tr>
+    <td style="padding: 0 0 0 0; text-align: center" bgcolor="#ffffff">
+      <a href="http://theknow.denverpost.com" style="border-bottom-style:none;"><img src="http://extras.denverpost.com/newsletter/theknow/header.jpg" width="300" height="50" alt="alt_text" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;width:100%;"></a>
+    </td>
+  </tr>
+</table>
+<!-- Email Header : END -->
+
+<!-- Email Body : BEGIN -->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;" class="email-container">
+  <!-- 1 Column Text + Button : BEGIN -->
+  <tr>
+    <td bgcolor="#ffffff">
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td style="padding: 20px 20px 20px;line-height: 140%;font-size:18px;font-family:'Source Sans Pro',sans-serif;">
+<!-- BYLINE -->
+<p class="byline" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;text-transform:uppercase;font-weight:700;color:maroon;mso-line-height-rule:exactly;font-size:14px;line-height:1.5em;" >By Sara Grant<br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" /><a href="mailto:sgrant@denverpost.com?subject=The Know Newsletter Feedback" title="Email Sara Grant @ The Denver Post" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;border-bottom-style:none;position:relative;margin-top:.67em;margin-bottom:.67em;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;text-decoration:none;color:#1670A3!important;border-bottom-width:2px;border-bottom-color:gold;" >sgrant@denverpost.com</a> / <a href="http://twitter.com/itsmesarag" title="@itsmesarag on Twitter" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;border-bottom-style:none;position:relative;margin-top:.67em;margin-bottom:.67em;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;text-decoration:none;color:#1670A3!important;border-bottom-width:2px;border-bottom-color:gold;" >@itsmesarag</a></p>
+
+<!-- BEGIN CONTENT -->
+
+<!-- SECTION 1 -->
+<p>&nbsp;</p>
+
+<!-- IMAGE -->
+<p style="text-align: center;margin:0;padding:0;"><center>
+<a href="LINK_GOES_HERE" style="text-decoration:none !important;border:none!important;" style="color:#CE4815;font-weight:bold;text-decoration:none;"><img src="IMAGE_URL_GOES_HERE" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:100%;font-size: 15px; line-height: 100%; color: #555555;display:block;"></a></center>
+</p>
+<p style="font-style:italic;font-size:14px;">Cutline_goes_here (Credit_Goes_Here)</p>
+<!-- END IMAGE -->
+
+<h2>SECTION_1</h2>
+<p>Intro</p>
+<center>
+<a href="STORY_LINK_HERE" style="text-decoration:none !important;border:none!important;"><img src="GIF_LINK_HERE" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:350px;font-size: 15px; line-height: 100%; color: #555555;display:block;"></a></center>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+
+<!-- LIVEINTENT AD #1 -->
+<!-- AD #1 --> <center><table border="0" cellpadding="0" cellspacing="0" ><tr><td colspan="2"><a style="display: block; width: 300px; height: 250px;border-bottom-style: none;" href="http://li.denverpost.com/click?s=129001&sz=300x250&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" rel="nofollow"><img src="http://li.denverpost.com/imp?s=129001&sz=300x250&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" border="0" width="300" height="250"/></a></td></tr><tr style="display:block; height:1px; line-height:1px;"><td><img src="http://li.denverpost.com/imp?s=129002&sz=1x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" height="1" width="10" /></td><td><img src="http://li.denverpost.com/imp?s=129003&sz=1x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" height="1" width="10" /></td></tr><tr><td align="left"><a href="http://li.denverpost.com/click?s=1786&sz=116x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" rel="nofollow"><img src="http://li.denverpost.com/imp?s=1786&sz=116x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" border="0"/></a></td><td align="right"><a href="http://li.denverpost.com/click?s=96651&sz=69x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" rel="nofollow"><img src="http://li.denverpost.com/imp?s=96651&sz=69x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" border="0"/></a></td></tr></table></center>
+<!-- END LIVEINTENT AD #1 -->
+
+<!-- SECTION 2 -->
+<p>&nbsp;</p>
+
+<!-- IMAGE -->
+<p style="text-align: center;margin:0;padding:0;"><center>
+<a href="LINK_GOES_HERE" style="text-decoration:none !important;border:none!important;" style="color:#CE4815;font-weight:bold;text-decoration:none;"><img src="IMAGE_URL_GOES_HERE" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:100%;font-size: 15px; line-height: 100%; color: #555555;display:block;"></a></center>
+</p>
+<p style="font-style:italic;font-size:14px;">Cutline_goes_here (Credit_Goes_Here)</p>
+<!-- END IMAGE -->
+
+<h2>SECTION_2</h2>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+
+<!-- LIVEINTENT AD #2 -->
+<!-- AD #2 --><center><table border="0" cellpadding="0" cellspacing="0" ><tr><td colspan="2"><a style="display: block; width: 300px; height: 250px;border-bottom-style:none;" href="http://li.denverpost.com/click?s=129004&sz=300x250&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" rel="nofollow"><img src="http://li.denverpost.com/imp?s=129004&sz=300x250&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" border="0" width="300" height="250"/></a></td></tr><tr style="display:block; height:1px; line-height:1px;"><td><img src="http://li.denverpost.com/imp?s=129005&sz=1x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" height="1" width="10" /></td><td><img src="http://li.denverpost.com/imp?s=129006&sz=1x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" height="1" width="10" /></td></tr><tr><td align="left"><a href="http://li.denverpost.com/click?s=1786&sz=116x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" rel="nofollow"><img src="http://li.denverpost.com/imp?s=1786&sz=116x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" border="0"/></a></td><td align="right"><a href="http://li.denverpost.com/click?s=96651&sz=69x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" rel="nofollow"><img src="http://li.denverpost.com/imp?s=96651&sz=69x15&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" border="0"/></a></td></tr></table></center><!-- END AD #2 -->
+<!-- END LIVEINTENT AD #2 -->
+
+<!-- SECTION 3 -->
+<p>&nbsp;</p>
+
+<!-- IMAGE -->
+<p style="text-align: center;margin:0;padding:0;"><center>
+<a href="LINK_GOES_HERE" style="text-decoration:none !important;border:none!important;" style="color:#CE4815;font-weight:bold;text-decoration:none;"><img src="IMAGE_URL_GOES_HERE" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:100%;font-size: 15px; line-height: 100%; color: #555555;display:block;"></a></center>
+</p>
+<p style="font-style:italic;font-size:14px;">Cutline_goes_here (Credit_Goes_Here)</p>
+<!-- END IMAGE -->
+
+<h2>SECTION_3</h2>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+<p>+</p>
+
+<!-- END CONTENT -->
+           
+
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+  <!-- 1 Column Text + Button : END -->
+
+
+<!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</div>
+<!--[if gte mso 9]>
+</v:fill>
+</v:rect>
+</v:image>
+<![endif]-->
+</td>
+</tr>
+
+
+<!-- 1 Column Text : END -->
+
+</table>
+<!-- Email Body : END -->
+
+<!-- Email Footer : BEGIN -->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px; font-family: sans-serif; color: #888888; font-size: 12px; line-height: 140%;background-color: #e4e4e4">
+  <tr>
+    <td style="padding: 40px 10px; width: 100%; font-family: sans-serif; font-size: 12px; line-height: 140%; text-align: center; color: #888888;background-color: #e4e4e4;" class="x-gmail-data-detectors">
+      <webversion style="color: #cccccc; text-decoration: underline; font-weight: bold;"><a href="[[BrowserLink]]" style="color:#CE4815;font-weight:bold;text-decoration:none;">View as a Web Page</a></webversion><br /><br />
+      <img src="http://extras.denverpost.com/newsletter/dpblackretina.png" width="300" height="50" alt="alt_text" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
+      <br><br>
+      The Denver Post<br>5990 Washington St., Denver, CO, 80216 US<br>(303) 954-1000
+      <br><br>
+      <unsubscribe style="color: #888888; text-decoration: underline;"><a href="[[UnsubscribeLink]]" style="color:#CE4815;font-weight:bold;text-decoration:none;">unsubscribe</a></unsubscribe>
+    </td>
+  </tr>
+</table>
+<!-- Email Footer : END -->
+
+<!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</div>
+
+</center>
+<script type="text/javascript" src="http://localhost:35729/livereload.js">
+
+</script>
+
+<!-- LIVEINTENT TRACKING -->
+<table cellpadding="0" cellspacing="0" border="0" width="40" height="6"><tbody><tr><td><img src="http://li.denverpost.com/imp?s=123792300&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792301&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792302&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792303&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792304&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792305&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792306&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792307&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792308&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792309&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792310&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792311&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792312&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792313&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792314&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792315&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792316&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792317&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792318&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td><td><img src="http://li.denverpost.com/imp?s=123792319&sz=2x1&li=#Listrak\MsgID#&e=#Listrak\Email#&p=#Listrak\DateTimeStampNumeric#" width="2" height="6" border="0" /></td></tr></tbody></table>
+</body>
+</html>

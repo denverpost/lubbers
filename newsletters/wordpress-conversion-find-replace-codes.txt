@@ -4,7 +4,7 @@ FIND:
 <fig.+?src="(.+?)".+?\n.+?">(.+?)</.*\n.*
 
 REPLACE:
-<center>\n<p style="text-align: center;margin:0;padding:0;">\n<img src="\1" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:100%;font-size: 15px; line-height: 100%; color: #555555;display:block;">\n</p>\n</center>\n<p class="credit">\2</p>
+<center>\n<p style="text-align: center;margin:0;padding:0;">\n<img src="\1" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:100%;font-size: 15px; line-height: 100%; color: #555555;display:block;">\n</p>\n</center>\n<p style="font-size:0.85em;color:#595959;margin-top:.5em;>\2</p>
 
 # IMAGES WITH CAPTION
 
@@ -12,7 +12,7 @@ FIND:
 \[cap.+?src="(.+?)".+?>(.+?)\[.+?$
 
 REPLACE:
-<center>\n<p style="text-align: center;margin:0;padding:0;">\n<img src="\1" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:100%;font-size: 15px; line-height: 100%; color: #555555;display:block;"></a>\n</p>\n</center>\n<p style="font-size:0.9em;"><em>\2</em></a></p>
+<center>\n<p style="text-align: center;margin:0;padding:0;">\n<img src="\1" aria-hidden="true" width="680" border="0" style="height: auto; background: #ffffff; font-family: sans-serif; width:100%;font-size: 15px; line-height: 100%; color: #555555;display:block;"></a>\n</p>\n</center>\n<p style="font-size:0.85em;color:#595959;margin-top:.5em;"><em>\2</em></a></p>
 
 # WRAP EVERYTHING IN PARAGRAPH TAGS
 
@@ -27,8 +27,11 @@ REPLACE:
 FIND:
 <a href="(.+?)">
 
-REPLACE:
+REPLACE (SPOT / OMELETTE):
 <a href="\1" style="color:#CE4815;font-weight:bold;text-decoration:none;">
+
+REPLACE (THE KNOW):
+<a href="\1" style="border-bottom:1px dashed;padding:2px 0;text-decoration:none;color:#13618D;font-weight:bold;">
 
 # ADD FIRST AD
 
